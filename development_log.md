@@ -1,5 +1,5 @@
-開発ログ
-#######
+# 開発ログ
+
 
 ## 2023-08-19
 
@@ -18,7 +18,9 @@ python ./scripts/linear_regression_betweeen_occur_and_year.py
 r^2 score: 0.45773262009027904
 ```
 
-そしてプロットした図がこれである。
+そしてプロットした図がこちらである。
 
 ![Wikipeda Kanji occurrence rank vs. educational year](./image/wikipedia_kanji_occur_rank_to_educational_year.png "Wikipedia の頻出漢字ランキングと学習年のプロット")
+
+率直に言うと、「思ったほど correlate してないな」と感じた。もう少し綺麗にまとまっていれば (そこまで分散していなければ) 遠慮なく小学校の低学年で学ぶ漢字を優先して配列に追加できるのにな、ということなのだが、そう簡単な話でもない、ということなのだろう。もう少しどうするか考える。
 
