@@ -11,6 +11,8 @@ Wikipedia の日本語記事データから常用漢字に限定した uni-gram 
 python ./scripts/populate_kanji_occurrence_from_wikipedia.py
 ```
 
+(ちなみに公開している JSON ファイル ([wikipedia_joyo_kanji_freq.json](https://github.com/kirameister/aki_code/blob/development/data/wikipedia_joyo_kanji_freq.json)) はその後手動で整形したものである)
+
 その頻度データと、学ぶ漢字の学年 (中学校はまとめて 7 としてカウント) を並べてみる。Linear regression にしてみる。
 
 ```
