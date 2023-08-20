@@ -9,7 +9,7 @@ kanji_weight_dict = dict()
 n_gram_to_weight_dict = dict()
 
 # load JSON with Kanji list
-with open('kanji.json') as f:
+with open('data/kanji.json') as f:
     kanji_data = json.load(f)
 
 year_keys = ["1", "2", "3", "4", "5", "6", "7"]
@@ -48,6 +48,11 @@ for i in range(corpus_size):
             else:
                 prev_kanji_str = ""
 
-with open('n_gram_to_weight.json', 'w') as f:
-    json.dump(n_gram_to_weight_dict, f, indent=4, ensure_ascii=False)
+# re-formatting..
+dump_list = sorted(n_gram_to_weight_dict.items(), key=lambda item: item[1], reverse=True)
+
+
+with open('data/n_gram_to_weight.json', 'w') as f:
+    #json.dump(n_gram_to_weight_dict, f, indent=4, ensure_ascii=False)
+    json.dump(dump_list, f, indent=4, ensure_ascii=False)
 
