@@ -41,6 +41,8 @@ for i in range(corpus_size):
                     prev_kanji_str = c
                 else:
                     prev_kanji_str = prev_kanji_str + c
+                    if(len(prev_kanji_str) > 3): # we're only interested up to tri-gram
+                        prev_kanji_str = prev_kanji_str[-3:]
                     if(prev_kanji_str in n_gram_to_weight_dict):
                         n_gram_to_weight_dict[prev_kanji_str] = n_gram_to_weight_dict[prev_kanji_str] + 1 ## this part could well be optimized.
                     else:
@@ -50,6 +52,7 @@ for i in range(corpus_size):
 
 # re-formatting..
 dump_list = sorted(n_gram_to_weight_dict.items(), key=lambda item: item[1], reverse=True)
+dump_list = dump_list[:10000] # pure cut-off
 
 
 with open('data/n_gram_to_weight.json', 'w') as f:
