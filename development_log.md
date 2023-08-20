@@ -28,7 +28,7 @@ r^2 score: 0.45773262009027904
 
 ## 2023-08-20
 
-Wikipedia からのデータも bi-gram 以上の n-gram として抽出しておく。例によって list() としてソートしておく (公開しているファイルは整形済み…と思ったらそのままで 200MB 以上のデータになっていたので (データ件数だけだと 10M いかないぐらい)、1M で cut-off しておく - それでも多すぎるという可能性は大いにあるけれど)。
+Wikipedia からのデータも bi-gram 以上の n-gram として抽出しておく。例によって list() としてソートしておく (公開しているファイルは整形済み…と思ったらそのままで 200MB 以上のデータになっていたので (データ件数だけだと 10M いかないぐらい)、1M で cut-off しておく - それでも多すぎるという可能性は大いにあるけれど - [n_gram_to_weight.json](https://github.com/kirameister/aki_code/blob/development/data/n_gram_to_weight.json))。
 
 ```
 python ./scripts/n_gram_generator.py
