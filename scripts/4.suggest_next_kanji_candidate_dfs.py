@@ -1,6 +1,6 @@
 import json
 
-alpha = 0.1
+alpha = 0.5
 
 defined_kanji_set = set()
 with open('data/stroke_layout.json') as f:
@@ -28,7 +28,8 @@ for ngram, score in ngram_score_data.items():
         # we're not interested in kanji's we already have in the layout
         continue
     new_kanji = list(bigram_kanji_set.difference(defined_kanji_set))[0]
-    new_kanji_score_dict[new_kanji] = new_kanji_score_dict.get(new_kanji, 0.0) + alpha * kanji_score_data[new_kanji]
+    #new_kanji_score_dict[new_kanji] = new_kanji_score_dict.get(new_kanji, 0.0) + alpha * kanji_score_data[new_kanji]
+    new_kanji_score_dict[new_kanji] = new_kanji_score_dict.get(new_kanji, 0.0) + alpha * score
 
 kanji_rank_sorted_list = sorted(new_kanji_score_dict.items(), key=lambda item: item[1], reverse=True)
 
