@@ -10,7 +10,7 @@ for stroke1 in stroke_layout.keys():
     for stroke2, k in stroke_layout[stroke1].items():
         defined_kanji_set.add(k)
 
-with open('data/wikipedia_joyo_kanji_freq_normalized.json') as f:
+with open('data/wikipedia_joyo_kanji_occurr_normalized.json') as f:
     kanji_score_data = json.load(f)
 
 with open('data/n_gram_to_weight_normalized.json') as f:

@@ -5,7 +5,7 @@ import numpy as np
 import sys
 
 
-with open('./data/wikipedia_joyo_kanji_freq.json', 'r') as f:
+with open('./data/wikipedia_joyo_kanji_occurr.json', 'r') as f:
     wikipedia_occur_data = json.load(f)
 
 rank = []

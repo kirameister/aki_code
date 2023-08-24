@@ -5,7 +5,7 @@ import tensorflow
 import tensorflow_datasets as tfds
 joyo_kanji_set = set()
 kanji_year_dict = dict()
-wikipedia_kanji_freq_dict = dict()
+wikipedia_kanji_occurr_dict = dict()
 
 # load JSON with Kanji list
 with open('data/kanji.json') as f:
@@ -35,13 +35,13 @@ for i in range(corpus_size):
         letter_list =  list(line)
         for c in letter_list:
             if(c in joyo_kanji_set):
-                if(c in wikipedia_kanji_freq_dict):
-                    wikipedia_kanji_freq_dict[c] += 1
+                if(c in wikipedia_kanji_occurr_dict):
+                    wikipedia_kanji_occurr_dict[c] += 1
                 else:
-                    wikipedia_kanji_freq_dict[c] = 1
+                    wikipedia_kanji_occurr_dict[c] = 1
 
 # re-formatting..
-dump_list_temp = sorted(wikipedia_kanji_freq_dict.items(), key=lambda item: item[1], reverse=True)
+dump_list_temp = sorted(wikipedia_kanji_occurr_dict.items(), key=lambda item: item[1], reverse=True)
 dump_list = []
 for i in dump_list_temp:
     d = dict()
@@ -49,7 +49,7 @@ for i in dump_list_temp:
     dump_list.append(d)
 
 # dump data in JSON format
-with open('data/wikipedia_joyo_kanji_freq.json', 'w') as f:
-    #json.dump(wikipedia_kanji_freq_dict, f, indent=4, ensure_ascii=False)
+with open('data/wikipedia_joyo_kanji_occurr.json', 'w') as f:
+    #json.dump(wikipedia_kanji_occurr_dict, f, indent=4, ensure_ascii=False)
     json.dump(dump_list, f, indent=4, ensure_ascii=False)
 
