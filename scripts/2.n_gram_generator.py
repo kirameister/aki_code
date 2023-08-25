@@ -25,7 +25,7 @@ corpus_list = list(ds.as_numpy_iterator())
 corpus_size = len(corpus_list)
 
 for i in range(corpus_size):
-    if(i % 1000 == 0): 
+    if(i % 1000 == 0):
         print(f"Iteration {i} passed")
         #exit()
     lines = corpus_list[i]['text'].decode('utf-8')
@@ -52,7 +52,7 @@ for i in range(corpus_size):
 
 # re-formatting..
 dump_list = sorted(n_gram_to_weight_dict.items(), key=lambda item: item[1], reverse=True)
-dump_list = dump_list[:10000] # pure cut-off
+dump_list = dump_list[:100000] # pure cut-off
 
 
 with open('data/n_gram_to_weight.json', 'w') as f:
