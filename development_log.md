@@ -234,7 +234,25 @@ python ./scripts/4.suggest_next_kanji_candidate_dfs.py --mesh_mode | head
 
 https://github.com/skk-dev/dict/blob/master/SKK-JISYO.S
 
+## 2023-08-26
 
+同音異義語関係をもう少し調べてみた。といっても SKK の辞書を眺めてみただけなのですが。 https://github.com/skk-dev/dict/tree/master にある `SKK-JISYO.S` を
+
+```
+cat SKK-JISYO.S | nkf -w | grep -E '\/.*\/.*\/' | grep -P '[\p{Han}][\p{Han}]' | head
+あさひ /朝日/旭/
+いがい /以外/意外/
+いこう /以降/移行/意向/
+いし /石/医師/
+いじょう /以上/異常/
+いち /一/位置/壱/市/
+いちじ /一時/一次/
+いと /糸/意図/
+いらい /以来/依頼/
+かい /会/回/解/開/改/界/海/階/快/介/壊/械/貝/戒/皆/絵/悔/怪/懐/街/塊/灰/甲斐/恢/廻/魁/芥/蟹/晦/拐/
+```
+
+とかやってみる。なかなか使える情報かも知れない。これをベースに、同音異義語に使われる漢字を優先的にストロークに取り入れていくとか良いかも知れない。
 
 
 
