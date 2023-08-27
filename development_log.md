@@ -283,7 +283,7 @@ cat ../skk-dict/SKK-JISYO.ML | nkf -w | python ./scripts/6.identify_homophonic_d
 
 早速同音異義語を disambiguate する確率が高い (つまり disambiguate する同音異義語の数が多い) 漢字を調べてみる。こんな感じ:
 
-'''
+```
 cat ../skk-dict/SKK-JISYO.ML | nkf -w | python ./scripts/6.identify_homophonic_disambiguating_kanji_from_skk_dict.py | perl -pe "s/\('(.*?)\',.*$/\$1/" | cat -n | head -n 5
      1	生
      2	子
@@ -291,6 +291,8 @@ cat ../skk-dict/SKK-JISYO.ML | nkf -w | python ./scripts/6.identify_homophonic_d
      4	気
      5	小
 cat ../skk-dict/SKK-JISYO.ML | nkf -w | python ./scripts/6.identify_homophonic_disambiguating_kanji_from_skk_dict.py | perl -pe "s/\('(.*?)\',.*$/\$1/" | head -n 100 | perl -pe 'chomp(); s/$/ /'
-生 子 行 気 小 正 下 神 上 大 法 心 々 公 死 り 戦 家 性 事 木 高 地 後 定 信 会 時 体 海 相 人 新 光 字 見 解 火 名 用 官 長 所 前 歌 書 政 文 感 成 工 機 意 紙 進 間 分 情 形 頭 水 東 当 方 調 場 金 私 身 花 手 声 道 記 教 船 言 制 管 合 城 異 線 点 視 開 校 製 三 不 加 石 天 山 古 口 詩 士 主 要
-'''
+生 子 行 気 小 正 下 神 上 大 法 心 公 死 戦 家 性 事 木 高 地 後 定 信 会 時 体 海 相 人 新 光 字 見 解 火 名 用 官 長 所 前 歌 書 政 文 感 成 工 機 意 紙 進 間 分 情 形 頭 水 東 当 方 調 場 金 私 身 花 手 声 道 記 教 船 言 制 管 合 城 異 線 点 視 開 校 製 三 不 加 石 天 山 古 口 詩 士 主 要 聖 精
+```
+
+
 

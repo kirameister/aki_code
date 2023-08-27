@@ -40,15 +40,9 @@ for line in lines.split('\n'):
             continue
         for c in list(kanji):
             k_to_occur_dict[c] = k_to_occur_dict.get(c, 0) + 1
-        for c in list(kanji):
-            if(c in joyo_kanji_set):
-                pass
-                #new_kanji_score_dict[c] = new_kanji_score_dict.get(c, [kanji]) + [kanji]
-                #new_kanji_score_dict[c] = new_kanji_score_dict.get(c, [kanji+"-"+yomi]) + [kanji+"-"+yomi]
-                #new_kanji_score_dict[c] = new_kanji_score_dict.get(c, []) + [kanji+"-"+yomi]
     # ..reading of all the kanji chars done; now we are going to take only the unique char for disambiguation
     for c, v in k_to_occur_dict.items():
-        if(v == 1):
+        if(v == 1 and c in joyo_kanji_set):
             new_kanji_score_dict[c] = new_kanji_score_dict.get(c, []) + [line]
 
 kanji_rank_sorted_list = sorted(new_kanji_score_dict.items(), key=lambda item: len(item[1]), reverse=True)
