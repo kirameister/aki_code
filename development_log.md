@@ -281,7 +281,7 @@ cat ../skk-dict/SKK-JISYO.ML | nkf -w | python ./scripts/6.identify_homophonic_d
 
 ## 2023-08-27
 
-早速同音異義語を disambiguate する確率が高い (つまり disambiguate する同音異義語の数が多い) 漢字を調べてみる。こんな感じ:
+早速同音異義語を disambiguate する確率が高い (つまり disambiguate する同音異義語の数が多い) 漢字 top 100 を調べてみる。こんな感じ:
 
 ```
 cat ../skk-dict/SKK-JISYO.ML | nkf -w | python ./scripts/6.identify_homophonic_disambiguating_kanji_from_skk_dict.py | perl -pe "s/\('(.*?)\',.*$/\$1/" | cat -n | head -n 5
@@ -293,6 +293,10 @@ cat ../skk-dict/SKK-JISYO.ML | nkf -w | python ./scripts/6.identify_homophonic_d
 cat ../skk-dict/SKK-JISYO.ML | nkf -w | python ./scripts/6.identify_homophonic_disambiguating_kanji_from_skk_dict.py | perl -pe "s/\('(.*?)\',.*$/\$1/" | head -n 100 | perl -pe 'chomp(); s/$/ /'
 生 子 行 気 小 正 下 神 上 大 法 心 公 死 戦 家 性 事 木 高 地 後 定 信 会 時 体 海 相 人 新 光 字 見 解 火 名 用 官 長 所 前 歌 書 政 文 感 成 工 機 意 紙 進 間 分 情 形 頭 水 東 当 方 調 場 金 私 身 花 手 声 道 記 教 船 言 制 管 合 城 異 線 点 視 開 校 製 三 不 加 石 天 山 古 口 詩 士 主 要 聖 精
 ```
+
+もとのデータである SKK の辞書には活用形の全てが記述されているわけではない (形容詞や動詞の stem 部分までが読みに書かれている、という理解な) のだが、「感じ」と「漢字」を disambiguate するための「字」や「感」が上のリストの中には入っているので一安心ではある。100 という数字に特に意味はないのだが、ここから同義語や反義語などを集めていって、`9 * 9 * 2 = 162` 程度の漢字をまずはリストアップしてみようと思う。
+
+
 
 
 
