@@ -23,18 +23,18 @@ def main(args):
     # load the layout data
     with open('data/stroke_layout.json') as f:
         stroke_layout = json.load(f)
-    box_width  = 15
-    box_height = 25
+    box_width  = 18
+    box_height = 28
     padding_width  = 2
     padding_height = 2
-    segment_height = (box_height + padding_height) * 4
     segment_width  = (box_width  + padding_width)  * 10
-    if(args.no_number):
-        segment_height = (box_height + padding_height) * 33
+    segment_height = (box_height + padding_height) * 4
+    #if(args.no_number):
+    #    segment_height = (box_height + padding_height) * 3
     all_width  = padding_width + 10 * segment_width
     all_height = padding_height + 4 * segment_height
-    if(args.no_number):
-        all_height = all_height - box_height - padding_height
+    #if(args.no_number):
+    #    all_height = padding_height + 3 * segment_height
     im = Image.new('RGB', (all_width, all_height), (255, 255, 255))
     draw = ImageDraw.Draw(im)
 
