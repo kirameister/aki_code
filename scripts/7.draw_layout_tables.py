@@ -2,6 +2,7 @@
 import collections
 import argparse
 import json
+import re
 from PIL import Image, ImageDraw, ImageFont
 
 output_file_path = "image/aki_code_tables.jpg"
@@ -81,8 +82,11 @@ def main(args):
             if(second_key not in char_to_pos): # anotehr safe-guard
                 continue
             (h, w) = char_to_pos[second_key]
+            # the following line is to split the Kanji from the the comment, whihc are supposed to be split by the first space
+            kanji_to_print = re.sub('\\s.*$', '', stroke_layout[first_key][second_key])
+            #comment_for_the_kanji = re.sub('^.*?\\s', '', stroke_layout[first_key][second_key])
             draw.multiline_text((segment_origin_w + (box_width * w), segment_origin_h + (box_height * h)),
-                                stroke_layout[first_key][second_key], fill=(0, 0, 0), font=font)
+                                kanji_to_print, fill=(0, 0, 0), font=font)
 
 
     # save the file
