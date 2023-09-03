@@ -1,4 +1,5 @@
 
+import collections
 import argparse
 import json
 from PIL import Image, ImageDraw, ImageFont
@@ -19,10 +20,23 @@ for i in range(len(qwerty_layout)):
     for j in range(len(qwerty_layout[i])):
         char_to_pos[qwerty_layout[i][j]] = (i, j)
 
+def detect_duplicate_keys(list_of_pairs):
+    key_count = collections.Counter(k for k,v in list_of_pairs)
+    duplicate_keys = ', '.join(k for k,v in key_count.items() if v>1)
+
+    if len(duplicate_keys) != 0:
+        raise ValueError('Duplicate key(s) found: {}'.format(duplicate_keys))
+
+def validate_data(list_of_pairs):
+    detect_duplicate_keys(list_of_pairs)
+    # More dectection, each of them will raise exception upon invalid
+    # data
+    return dict(list_of_pairs)
+
 def main(args):
     # load the layout data
     with open('data/stroke_layout.json') as f:
-        stroke_layout = json.load(f)
+        stroke_layout = json.load(f, object_pairs_hook=validate_data)
     box_width  = 18
     box_height = 28
     padding_width  = 2
