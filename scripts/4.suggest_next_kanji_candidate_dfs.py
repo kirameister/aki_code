@@ -1,4 +1,5 @@
 import json
+import re
 import argparse
 
 def main(args):
@@ -8,7 +9,7 @@ def main(args):
 
     for stroke1 in stroke_layout.keys():
         for stroke2, k in stroke_layout[stroke1].items():
-            defined_kanji_set.add(k)
+            defined_kanji_set.add(re.sub("\\s.*$", "",k))
 
     with open('data/wikipedia_joyo_kanji_occurr_normalized.json') as f:
         kanji_score_data = json.load(f)
