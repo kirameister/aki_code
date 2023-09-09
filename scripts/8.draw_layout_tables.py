@@ -18,6 +18,16 @@ qwerty_layout = [   ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
                     ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";"], 
                     ["z", "x", "c", "v", "b", "n", "m", ",", ".", "/"] ]
 
+first_stroke_fill_color = (51, 255, 255)
+core_color = (255, 255, 204)
+
+qwerty_fill_color = [
+        [None, None,       None,       None,       None, None, None,       None,       None,       None],
+        [None, core_color, core_color, core_color, None, None, core_color, core_color, core_color, None],
+        [None, core_color, core_color, core_color, None, None, core_color, core_color, core_color, None],
+        [None, core_color, core_color, core_color, None, None, core_color, core_color, core_color, None]
+        ]
+
 char_to_pos = dict()
 for i in range(len(qwerty_layout)):
     for j in range(len(qwerty_layout[i])):
@@ -64,18 +74,16 @@ def main(args):
         segment_origin_w = padding_width  + segment_width  * w
         for i in range(len(qwerty_layout)):
             for j in range(len(qwerty_layout[i])):
+                fill_color = (255, 255, 255)
+                if(qwerty_fill_color[i][j] is not None):
+                    fill_color = qwerty_fill_color[i][j]
                 if(i == h and j == w):
-                    draw.rectangle((segment_origin_w + box_width  * j, 
-                                    segment_origin_h + box_height * i, 
-                                    segment_origin_w + box_width  * (j+1), 
-                                    segment_origin_h + box_height * (i+1)), 
-                                   fill=(0, 192, 192), outline=(0, 0, 0))
-                else:
-                    draw.rectangle((segment_origin_w + box_width  * j, 
-                                    segment_origin_h + box_height * i, 
-                                    segment_origin_w + box_width  * (j+1), 
-                                    segment_origin_h + box_height * (i+1)), 
-                                   fill=(255, 255, 255), outline=(0, 0, 0))
+                    fill_color = first_stroke_fill_color
+                draw.rectangle((segment_origin_w + box_width  * j,
+                                segment_origin_h + box_height * i,
+                                segment_origin_w + box_width  * (j+1),
+                                segment_origin_h + box_height * (i+1)),
+                                fill=fill_color, outline=(0, 0, 0))
 
         # start drawing the char
         for second_key in stroke_layout[first_key]:
