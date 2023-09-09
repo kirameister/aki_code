@@ -334,7 +334,9 @@ python ./scripts/single_to_double_nest_json_structure.py
 python ./scripts/8.draw_layout_tables.py
 ```
 
-から上記のスクリプトが (`-n` を指定しなかった場合) 実行されることになる。`./scripts/7.single_to_double_nest_json_structure.py` とするのが良かったと思うのだが、数字とピリオドの含まれる Python スクリプトを import するのは (できるが) 面倒なので易きに流れた。
+から上記のスクリプトが (`-n` を指定しなかった場合) 実行されることになる。`./scripts/7.single_to_double_nest_json_structure.py` とするのが良かったと思うのだが、数字とピリオドの含まれる Python スクリプトを import するのは (できるが) 面倒なので易きに流れた。それからベタ書きで書く場合、セグメント毎にコメントができたほうが良いだろうと考えて、`_` で始まる key を (duplicate check から) 無視するように変更しておいた。
+
+
 
 
 
