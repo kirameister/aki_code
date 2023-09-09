@@ -5,6 +5,8 @@ import json
 import re
 from PIL import Image, ImageDraw, ImageFont
 
+import single_to_double_nest_json_structure # this is goofy, but seems easier than dealing with a file starting with number and dot...
+
 output_file_path = "image/aki_code_tables.jpg"
 
 ttfontname = "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"
@@ -35,6 +37,10 @@ def validate_data(list_of_pairs):
     return dict(list_of_pairs)
 
 def main(args):
+    # enumerate first
+    if(not args.no_enumeration):
+        single_to_double_nest_json_structure.main()
+        
     # load the layout data
     with open('data/stroke_layout.json') as f:
         stroke_layout = json.load(f, object_pairs_hook=validate_data)
@@ -44,19 +50,13 @@ def main(args):
     padding_height = 2
     segment_width  = (box_width  + padding_width)  * 10
     segment_height = (box_height + padding_height) * 4
-    #if(args.no_number):
-    #    segment_height = (box_height + padding_height) * 3
     all_width  = padding_width + 10 * segment_width
     all_height = padding_height + 4 * segment_height
-    #if(args.no_number):
-    #    all_height = padding_height + 3 * segment_height
     im = Image.new('RGB', (all_width, all_height), (255, 255, 255))
     draw = ImageDraw.Draw(im)
 
     for first_key in stroke_layout:
         if(first_key not in char_to_pos): # safe-guard
-            continue
-        if(args.no_number and first_key in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")):
             continue
         # draw boxes..
         (h, w) = char_to_pos[first_key]
@@ -88,12 +88,11 @@ def main(args):
             draw.multiline_text((segment_origin_w + (box_width * w), segment_origin_h + (box_height * h)),
                                 kanji_to_print, fill=(0, 0, 0), font=font)
 
-
     # save the file
     im.save(output_file_path, quality=95)
 
 if(__name__ == '__main__'):
     parser = argparse.ArgumentParser(description='Generate layout tables given the layout JSON')
-    parser.add_argument('-n', '--no_number', action='store_true', help='Do not print the number row')
+    parser.add_argument('-n', '--no_enumeration', action='store_true', help='Do not conduct enumeration from the stroke_layout_src.json; use stroke_layout.json directly instead.')
     args = parser.parse_args()
     main(args)

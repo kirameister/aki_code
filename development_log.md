@@ -322,6 +322,22 @@ python ./scripts/7.draw_layout_tables.py
 
 今まで JSON ファイルを編集していたのだけれど、2つの key をネストするよりも 1 layer ベタ書きで書いたほうが良いのではないかと考えるようになる。どうしたものかと考えたが、Python スクリプトを一つかませば良いのではないかと結論づける。
 
+…というわけで書いてみた。
+
+```
+python ./scripts/single_to_double_nest_json_structure.py
+```
+
+でよく、
+
+```
+python ./scripts/8.draw_layout_tables.py
+```
+
+から上記のスクリプトが (`-n` を指定しなかった場合) 実行されることになる。`./scripts/7.single_to_double_nest_json_structure.py` とするのが良かったと思うのだが、数字とピリオドの含まれる Python スクリプトを import するのは (できるが) 面倒なので易きに流れた。
+
+
+
 
 
 
