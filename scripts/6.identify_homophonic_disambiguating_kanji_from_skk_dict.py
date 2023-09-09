@@ -53,7 +53,7 @@ for line in lines.split('\n'):
             c_key = c
             # we're going to add a suffix marker to indicate that this kanji is already defined in the layout
             if(c in already_defined_kanji_set):
-                c_key = c + "_"
+                c_key = c + "-" # this suffix is to indicate the Kanji in question is already defined in layout JSON
             new_kanji_score_dict[c_key] = new_kanji_score_dict.get(c_key, []) + [line]
 
 kanji_rank_sorted_list = sorted(new_kanji_score_dict.items(), key=lambda item: len(item[1]), reverse=True)
