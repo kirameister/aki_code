@@ -1,14 +1,12 @@
 
 import collections
-import argparse
 import json
-import re
 
 def detect_duplicate_keys(list_of_pairs):
     key_count = collections.Counter(k for k,v in list_of_pairs)
-    duplicate_keys = ', '.join(k for k,v in key_count.items() if v>1)
-
-    if len(duplicate_keys) != 0:
+    #duplicate_keys = ', '.join(k for k,v in key_count.items() if v>1)
+    duplicate_keys = ', '.join(k for k,v in key_count.items() if(v>1 and not k.startswith('_'))) # modified from the original detectiton versino as we'd like to allow commenting values starting with '_'
+    if(len(duplicate_keys) != 0):
         raise ValueError('Duplicate key(s) found: {}'.format(duplicate_keys))
 
 def validate_data(list_of_pairs):
