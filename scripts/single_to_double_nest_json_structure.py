@@ -1,6 +1,7 @@
 
 import collections
 import json
+import re
 
 def detect_duplicate_keys(list_of_pairs):
     key_count = collections.Counter(k for k,v in list_of_pairs)
@@ -17,6 +18,7 @@ def validate_data(list_of_pairs):
 
 def main():
     generated_json_data = dict()
+    value_set = set()
     with open('data/stroke_layout_src.json') as f:
         stroke_layout_src = json.load(f, object_pairs_hook=validate_data)
     for stroke, value in stroke_layout_src.items():
@@ -27,6 +29,10 @@ def main():
         if(first not in generated_json_data):
             generated_json_data[first] = dict()
         generated_json_data[first][second] = value
+        value = re.sub('\\s.*$', '', value)
+        if(value in value_set):
+            print(f'The value {value} has been defined with multiple strokes')
+        value_set.add(value)
     with open('data/stroke_layout.json', 'w') as f:
         json.dump(generated_json_data, f, indent=4, ensure_ascii=False)
 
