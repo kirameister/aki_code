@@ -21,6 +21,21 @@ def main(args):
             if(k in joyo_kanji_set):
                 print(k)
 
+    else:
+        radicals = list(args.radical)
+        input_radical_set = set()
+        for radical in radicals:
+            if(radical not in radical_to_kanji):
+                print(f'radical "{radical}" not found in the element dictionary.. Skipping..')
+            else:
+                input_radical_set.add(radical)
+        print(f'Input radical set: {input_radical_set}')
+        for radical in input_radical_set:
+            kanji_set = set(radical_to_kanji[radical]) - set(radical)
+            for k in kanji_set:
+                if(k in input_radical_set):
+                    print(f'{radical} => {k}')
+
 
 if(__name__ == '__main__'):
     parser = argparse.ArgumentParser(description='Print Joyo Kanjis from a given radical (部首)')
