@@ -1,0 +1,21 @@
+# This is a source data for constructing stroke_layout.json
+
+n1  一
+n2  二
+n3  三
+n4  四
+n5  五
+n6  六
+n7  七
+n8  八
+n9  九
+n0  零
+
+e1  十
+e2  百
+e3  千
+e4  万
+e8  億
+e9  兆
+
+e1  一
