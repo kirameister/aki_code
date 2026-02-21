@@ -24,11 +24,12 @@ def main():
 
     # sanity check and char extractions
     for line in lines:
-        if re.search('^#', line):
+        if re.search('^(\\s*)#', line):
             continue
-        if not re.search('\\w(\\t|\\s+)?\\w(\\t|\\s+)\\w$', line):
+        line = re.sub('#.*$', '', line)
+        if not re.search('\\w(\\t|\\s+)?\\w(\\t|\\s+)\\w(\\s+)?$', line):
             continue
-        match = re.match(r'(\w)(\t|\s+)?(\w)(\t|\s+)(\w)', line)
+        match = re.match(r'(\w)(\t|\s+)?(\w)(\t|\s+)(\w)(\\s+)?', line)
         first, _, second, _, kanji = match.groups()
         if first not in json_data:
             json_data[first] = dict()
